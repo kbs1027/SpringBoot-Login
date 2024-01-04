@@ -1,1 +1,5 @@
 .DS_Store
+*.bin
+*.lock
+loginTest/src/main/resources/application.yml
+loginTest/.gradle/file-system.probe
