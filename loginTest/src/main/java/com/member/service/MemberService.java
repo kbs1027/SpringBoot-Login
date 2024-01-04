@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class MemberService {
+public class MemberService implements LoginService{
     private final MemberRepository memberRepository;
 
     public void save(MemberDTO memberDTO) {

@@ -1,6 +1,7 @@
 package com.member.controller;
 
 import com.member.dto.MemberDTO;
+import com.member.service.LoginService;
 import com.member.service.MemberService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @RequiredArgsConstructor
 public class MemberController {
     // 생성자 주입
-    private final MemberService memberService;
+    private final LoginService loginService;
     // 회원가입 페이지 출력 요청
     @GetMapping("/member/save")
     public String saveForm(){
@@ -25,7 +26,7 @@ public class MemberController {
     public String save(@ModelAttribute MemberDTO memberDTO) {
         System.out.println("MemberController.save");
         System.out.println("memberDTO = " + memberDTO);
-        memberService.save(memberDTO);
+        loginService.save(memberDTO);
         return "login";
     }
 
@@ -37,7 +38,7 @@ public class MemberController {
     @PostMapping("/member/login")
     public String login(@ModelAttribute MemberDTO memberDTO, HttpSession session) {
         System.out.println("post login");
-        MemberDTO loginResult = memberService.login(memberDTO);
+        MemberDTO loginResult = loginService.login(memberDTO);
         if (loginResult != null){
             session.setAttribute("loginEmail", loginResult.getMemberEmail());
             return "main";
